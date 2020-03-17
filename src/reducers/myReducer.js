@@ -20,15 +20,13 @@ export const initialState = {
 export const myReducer = (state = initialState, action) => {
   switch(action.type) {
     case REMOVE_FEATURE:
-      console.log('reducer: item remove', action.payload.item)
-
       const removeItem = state.additionalFeatures.find(i => i.id === action.payload.item)
+      
       return({
         ...state,
         car: {
           ...state.car,
-          features: [...state.car.features],
-          features: state.car.features.pop(removeItem)
+          features: [...state.car.features.filter(i => {return i !== removeItem})]
         },
         additionalPrice: state.additionalPrice - removeItem.price
       })
@@ -37,7 +35,6 @@ export const myReducer = (state = initialState, action) => {
       // remove feature from array
 
     case BUY_ITEM:
-      console.log('reducer: item buy', action.payload.item)
       const newItem = state.additionalFeatures.find(i => i.id === action.payload.item)
 
       return ({
