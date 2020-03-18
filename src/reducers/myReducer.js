@@ -1,4 +1,5 @@
 import { REMOVE_FEATURE, BUY_ITEM } from '../actions'
+import AdditionalFeatures from '../components/AdditionalFeatures'
 
 export const initialState = {
   additionalPrice: 0,
@@ -20,7 +21,7 @@ export const initialState = {
 export const myReducer = (state = initialState, action) => {
   switch(action.type) {
     case REMOVE_FEATURE:
-      const removeItem = state.additionalFeatures.find(i => i.id === action.payload.item)
+      const removeItem = state.car.features.find(i => i.id === action.payload.item)
       
       return({
         ...state,
@@ -28,6 +29,7 @@ export const myReducer = (state = initialState, action) => {
           ...state.car,
           features: [...state.car.features.filter(i => {return i !== removeItem})]
         },
+        additionalFeatures: [...state.additionalFeatures, removeItem],
         additionalPrice: state.additionalPrice - removeItem.price
       })
       // find id
@@ -43,6 +45,7 @@ export const myReducer = (state = initialState, action) => {
           ...state.car,
           features: [...state.car.features, newItem]
         },
+        additionalFeatures: [...state.additionalFeatures.filter(i => {return i !== newItem})],
         additionalPrice: state.additionalPrice + newItem.price
       })
       
