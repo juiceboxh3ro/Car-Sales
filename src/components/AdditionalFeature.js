@@ -6,7 +6,6 @@ import { buyItem } from '../actions'
 const AdditionalFeature = props => {
   return (
     <li>
-      {/* Add an onClick that will let you add a feature to your car */}
       <button
         className="button"
         onClick={() => props.buyItem(props.feature.id)}>Add</button>

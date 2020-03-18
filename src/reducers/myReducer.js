@@ -1,5 +1,4 @@
 import { REMOVE_FEATURE, BUY_ITEM } from '../actions'
-import AdditionalFeatures from '../components/AdditionalFeatures'
 
 export const initialState = {
   additionalPrice: 0,
@@ -33,8 +32,9 @@ export const myReducer = (state = initialState, action) => {
         additionalPrice: state.additionalPrice - removeItem.price
       })
       // find id
-      // remove price
-      // remove feature from array
+      // remove price from additional price
+      // remove feature from added features array
+      // add feature to additional features  array
 
     case BUY_ITEM:
       const newItem = state.additionalFeatures.find(i => i.id === action.payload.item)
@@ -51,7 +51,8 @@ export const myReducer = (state = initialState, action) => {
       
       // find id
       // add price payload to additional price
-      // add feature to features array
+      // add feature to added features array
+      // remove feature from additional features array
     default:
       return state;
   }
